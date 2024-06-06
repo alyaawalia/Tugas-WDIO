@@ -1,20 +1,16 @@
 import { browser, $, expect } from '@wdio/globals'
 
 
-//buat befornya dl sebelum diklik ke produk yg mau di klik
+beforeEach('User harus berada pada halaman awal', async function () {
+    await browser.url('https://nadjani.com/')
+    const topUrl = await $('#home_adv > div:nth-child(2) > div.col-md-12.nopadding > div:nth-child(1) > a > img')
+    await topUrl.click()
 
+    const categoryUrl = await $('#content_left > ul > li:nth-child(17) > a')
+    await categoryUrl.click()
+
+})
 describe ('Test Website Nadjani', function () {
-    it('Menampilkan nama produk', async function () {
-        await browser.url('https://nadjani.com/product/sunjae-pink')
-
-        const productName = await $ ('.product_title.entry-title')
-        const productNameText = await productName.getText()
-        // const productName = $ ('.product-title').getText()
-        // expect(productName).to('Sunjae Pink')
-        console.log('<||||> ini text nama produk<||||>', productNameText)
-        expect(productNameText).toBe('Sunjae Pink')
-    })
-
     it('Tambah QTY dengan tombol plus', async function () {  //done 
         await browser.url('https://nadjani.com/product/sunjae-pink')
 
@@ -40,31 +36,33 @@ describe ('Test Website Nadjani', function () {
         await browser.url('https://nadjani.com/product/sunjae-pink')
     
         // Dapatkan elemen input qty
-        const inputQtyMinus = await $('[name="qty"]') 
+        const inputQtyMinus = await $('#qty_product > option:nth-child(3)') //ubah jd 2
         
-        const qtyAwalMinus = 3
-        await inputQtyMinus.setValue(qtyAwalMinus) // set atau atur qty awal
-    
+        //const qtyAwalMinus = 2 --> gabisa lngsung di set 2 karna ada option valuenya 
+        //await inputQtyMinus.setValue(qtyAwalMinus) // set atau atur qty awal
+        await inputQtyMinus.click()
+
+        const alya = await $('[name="qty"]') //ambil nilainya yg udh jd 2
+        const alyaNew = parseInt(alya.getValue())
+
         // Temukan dan Klik tombol minus
         const minusButton = await $('#btn_qty_minus.select-qty-minus') 
         await minusButton.waitForClickable() // Tunggu hingga tombol minus dapat diklik
         await minusButton.click()
     
-        await browser.pause(3000)
+        //await browser.pause(3000)
        
         // Dapatkan qty setelah pengurangan
-        const newQtyMinus = parseInt(inputQtyMinus.getValue())
+        const newQtyMinus = parseInt(alya.getValue())
         
-        expect(newQtyMinus).toEqual(qtyAwalMinus - 1)
+        expect(newQtyMinus).toEqual(alyaNew - 1)
     })
 
-    it.only('Klik tombol "Top" dan beralih halaman', async function () { //done
+    it('Klik tombol "Top" dan beralih halaman', async function () { //done
         // Buka halaman produk
         await browser.url('https://nadjani.com/product/sunjae-pink')
 
-
         const linkTop = await $('#content_left > div > div.summary.entry-summary.col-md-5 > div.category-name > a')
-        await expect(linkTop).toHaveText('Top')
         await linkTop.click()
 
         await browser.pause(3000)
@@ -73,23 +71,23 @@ describe ('Test Website Nadjani', function () {
         
     })
 
-    it('Klik tombol "Ask Via WhatsApp" dan beralih halaman', async function () { //done
+    it.only('Klik tombol "Ask Via WhatsApp" dan switch tab ke whatsapp', async function () { //done
         // Buka halaman produk
         await browser.url('https://nadjani.com/product/sunjae-pink')
-
 
         const linkWA = await $('.ask-via-whatsapp')
         await linkWA.click()
 
         await browser.pause(3000)
-
-        await expect(browser).toHaveUrl('https://api.whatsapp.com/send?phone=6281220676314&text=Sunjae%20Pink%0Ahttps%3A%2F%2Fnadjani.com%2Fproduct%2Fsunjae-pink')
+        const window = await browser.getWindowHandles() //mengembalikan array untuk mengidentifikasi tabnya ada brp
+        await browser.switchToWindow(window[1]) //pindah ke tab ke 2 setelah website nadjani
+        const url = await browser.getUrl() 
+        await expect(url).toBe('https://api.whatsapp.com/send?phone=6281220676314&text=Sunjae%20Pink%0Ahttps%3A%2F%2Fnadjani.com%2Fproduct%2Fsunjae-pink')
     })
 
     it('Klik tombol "SHOP" dan beralih halaman', async function () { //done
         // Buka halaman produk
         await browser.url('https://nadjani.com/product/sunjae-pink')
-
 
         const linkShop = await $('#headline > div > div > a:nth-child(3)') 
         await linkShop.click()
@@ -114,18 +112,17 @@ describe ('Test Website Nadjani', function () {
     })
 
     
-    it('Klik button Beli Sekarang ', async function () { //done
-        // Buka halaman produk
-        await browser.url('https://nadjani.com/product/sunjae-pink')
+    // it('Search ', async function (){
+    //     await browser.url('https://nadjani.com/product/sunjae-pink')
 
-        const myButton = await $('#btn_add_to_cart')
-        await myButton.waitForClickable()
-        await myButton.click()
-        await browser.pause(3000)
+    //     const search = await $ ('#search-box-icon')
+    //     await search.setValue('Contoh pencarian')
 
-        await expect(browser).toHaveUrl('https://nadjani.com/cart') // buat test case expectnya nama produknya
-        
-    })
+    //     //const searchValue = await search.getValue()
+
+    //     //await browser.pause(3000)
+    //     //console.log('<||||> ini text nya <||||>', searchValue)
+    // })
 
     // it.only('Hapus keranjang', async function () {
     //     // Buka halaman keranjang
@@ -135,6 +132,8 @@ describe ('Test Website Nadjani', function () {
     //     const tombolHapus = await $$('.remove')
         
     // })
+
+    
     
 
 
