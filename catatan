@@ -1,0 +1,19 @@
+// 1. Nama produk yg ditampilkan -> nama produknya/judul (done)
+// 2. id barang (gatau jd dipake atau engga) (done)
+// 3. cek harga -> getText harganya (done)
+// 4. tambah qty -> qtynya nambah (done)
+// 5. kurang qty -> qtynya berkurang (done) (udah jalan tp masi butuh set value biar nguranginnya ga dr 1)
+// 6. klik button top -> direct url ke halaman top/ atasa doang (done) (udah bisa pindah halaman dan keklik tp tbtb (=Top) not found)
+// 7. klik button ask via whatsapp -> jd direct url ke wa nya (done)
+// 8. klik home -> direct url ke halaman home (done)
+// 9. klik shop -> direct url ke halaman shop (isinya semua katalog) (done)
+// 10. klik beli sekarang (tambah keranjang) -> expect url karena pindah halaman,  (masi error)
+// 11. hapus keranjang -> muncul popup
+// 12. total qty kl dikurangin / ditambah totalnya berubah -> total berubah (dikeranjang)
+// 13. start message us
+
+//parseInt() adalah mengambil string sebagai argumen, 
+//mencoba untuk menginterpretasikan angka dalam string tersebut, 
+//dan mengembalikan bilangan bulat yang sesuai.
+//Misalnya, saat mengambil nilai dari input kuantitas produk pada situs web e-commerce 
+//untuk kemudian membandingkannya dengan nilai yang diharapkan.
