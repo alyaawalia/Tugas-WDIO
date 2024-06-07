@@ -60,5 +60,11 @@ describe('Test Website Nadjani', function () {
         const searchResult = $('#content_left > ul > li')
         expect(searchResult).toBeDisplayed()
     })
+
+    // it.only('Tambah item ke keranjang', async function () {
+    //     await homePage.openPageSunjaePink()
+    //     await ProductPage.addToCart()
+    //     await expect(browser).toHaveUrl('https://nadjani.com/cart')
+    // })
     
 })

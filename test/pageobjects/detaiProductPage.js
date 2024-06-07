@@ -9,9 +9,9 @@ class ProductPage {
     get linkTop() { return $('#content_left > div > div.summary.entry-summary.col-md-5 > div.category-name > a') }
     get linkWA() { return $('.ask-via-whatsapp') }
     get linkShop() { return $('#headline > div > div > a:nth-child(3)') }
-    //get linkShop2() { return $ ('#headline > div > div > a:nth-child(3)')}
     get linkHome() { return $('=HOME') }
     get searchInput() { return $('#search-box-2') }
+    //get addToCartButton() { return $('#btn_add_to_cart')}
 
     //page action
     async open(productUrl) {
@@ -64,6 +64,9 @@ class ProductPage {
         await this.searchInput.setValue(keyword)
         await browser.keys('Enter')
     }
+    // async addToCart() {
+    //     await this.addToCartButton.click()
+    // }
 }
 
 export default new ProductPage()
