@@ -9,35 +9,22 @@ describe('Test Website Nadjani', function () {
         await homePage.goToSunjaePink()
     })
 
-    it('Tambah QTY dengan tombol plus', async function(){ 
+    it('Tambah QTY dengan tombol plus', async () => {
         await homePage.openPageSunjaePink()
-        await ProductPage.plusQty() //klik tombol plus
-        let jumlahQty = await ProductPage.getQty() //ambil value qty dan disimpan di jumlahQty
-        jumlahQty = parseFloat(jumlahQty)
-        console.log('<||||||> ini value yg disimpan <||||||>',jumlahQty)
-        expect(jumlahQty).toBe(2)
+        const awalQty = await ProductPage.getQty()
+        await ProductPage.plusQty()
+        const newQtyPlus = await ProductPage.getQty() 
+        expect(newQtyPlus).toEqual(awalQty + 1)
     })
-    it('Mengurangi QTY dengan tombol minus', async function(){ 
-        //await homePage.openPageSunjaePink()
-        await ProductPage.minusQty()
-        let jumlahQty2 = await ProductPage.getQty()
-        jumlahQty2 = parseFloat(jumlahQty2)
-        console.log('<||||||> ini value yg disimpan setelah dikurangin <||||||>',jumlahQty2)
-        expect(jumlahQty2).toBe(1)
-    })
-    // it('Tambah QTY dengan tombol plus', async () => {
-    //     await homePage.openPageSunjaePink()
-    //     const qtyAwal = await ProductPage.plusQty()
-    //     const newQty = parseInt(await ProductPage.inputQty.getValue())
-    //     expect(newQty).toEqual(qtyAwal + 1)
-    // })
 
-    // it('Mengurangi QTY dengan tombol minus', async () => {
-    //     await homePage.openPageSunjaePink() 
-    //     const qtyAwal = await ProductPage.minusQty() 
-    //     const newQty = parseInt(await ProductPage.inputQty.getValue())
-    //     expect(newQty).toEqual(qtyAwal - 1)
-    // })
+    it('Mengurangi QTY dengan tombol minus', async () => {
+        await homePage.openPageSunjaePink() 
+        await ProductPage.clickQtyInput() //set nilai qty jd 2
+        const initialQty = await ProductPage.getQty(); // Dapatkan qty awal (2)
+        await ProductPage.minusQty() //klik tombol minus sesudah nilai awal jd 2
+        const newQty = await ProductPage.getQty() // dapatkan qty saat ini
+        expect(newQty).toEqual(initialQty - 1)
+    })
 
     it('Klik tombol "Top" dan beralih halaman', async function () {
         await homePage.openPageSunjaePink()
@@ -50,7 +37,7 @@ describe('Test Website Nadjani', function () {
         await ProductPage.goToWhatsApp()
         const windowHandles = await browser.getWindowHandles() //mengembalikan array untuk mengidentifikasi tabnya ada brp
         await browser.switchToWindow(windowHandles[1]) //pindah ke tab ke 2 setelah website nadjani
-        await browser.pause(4000) //hrs dipause karna butuh waktu buat kelink wa nya
+        await browser.pause(3000) //hrs dipause karna butuh waktu buat kelink wa nya
         const url = await browser.getUrl()
         expect(url).toBe('https://api.whatsapp.com/send?phone=6281220676314&text=Sunjae%20Pink%0Ahttps%3A%2F%2Fnadjani.com%2Fproduct%2Fsunjae-pink')
     })
@@ -73,4 +60,5 @@ describe('Test Website Nadjani', function () {
         const searchResult = $('#content_left > ul > li')
         expect(searchResult).toBeDisplayed()
     })
+    
 })

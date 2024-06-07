@@ -28,11 +28,20 @@ class ProductPage {
         //return qtyAwal
     }
 
+    async getQty() {
+        return parseInt(await this.inputQty.getValue());
+    }
+    async clickQtyInput() {
+        const inputQtyMinus = await $('#qty_product > option:nth-child(3)')
+        await inputQtyMinus.click()
+    }
+    // async getCurrentQty() {
+    //     return parseInt(await this.inputQty.getValue())
+    // }
+    
     async minusQty() {
-        //const qtyAwal = parseInt(await this.inputQty.getValue())
-        await this.minusButton.waitForClickable()
+        //await this.minusButtonButton.waitForClickable()
         await this.minusButton.click()
-        //return qtyAwal
     }
 
     async goToTopCategory() {

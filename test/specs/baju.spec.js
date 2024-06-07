@@ -10,27 +10,27 @@ import { browser, $, expect } from '@wdio/globals'
 //     await categoryUrl.click()
 
 // })
-describe ('Test Website Nadjani', function () {
-//     it('Tambah QTY dengan tombol plus', async function () {  //done 
-//         await browser.url('https://nadjani.com/product/sunjae-pink')
+//describe ('Test Website Nadjani', function () {
+    // it('Tambah QTY dengan tombol plus', async function () {  //done 
+    //     await browser.url('https://nadjani.com/product/sunjae-pink')
 
-//         // Dapatkan elemen input qty, 
-//         const inputQty = await $('[name="qty"]') //css selector atibut untuk mencocokkan elemen berdasarkan atribut dan nilainya
-//         // Dapatkan qty awal
-//         const qtyAwal = parseInt(inputQty.getValue())
+    //     // Dapatkan elemen input qty, 
+    //     const inputQty = await $('[name="qty"]') //css selector atibut untuk mencocokkan elemen berdasarkan atribut dan nilainya
+    //     // Dapatkan qty awal
+    //     const qtyAwal = parseInt(inputQty.getValue())
 
-//         // Temukan dan Klik tombol plus
-//         const plusButton = await $('#btn_qty_plus.select-qty-plus') //css selector class dan id
-//         await plusButton.waitForClickable() //untuk nunggu sampe elemen plus bisa diklik. soalnya kl gapake ada error element click intercepted
-//         await plusButton.click()
+    //     // Temukan dan Klik tombol plus
+    //     const plusButton = await $('#btn_qty_plus.select-qty-plus') //css selector class dan id
+    //     await plusButton.waitForClickable() //untuk nunggu sampe elemen plus bisa diklik. soalnya kl gapake ada error element click intercepted
+    //     await plusButton.click()
 
-//         await browser.pause(3000)
+    //     await browser.pause(3000)
        
-//         // Dapatkan qty setelah penambahan
-//         const newQty = parseInt(inputQty.getValue())
+    //     // Dapatkan qty setelah penambahan
+    //     const newQty = parseInt(inputQty.getValue())
         
-//         expect(newQty).toEqual(qtyAwal + 1)
-//     })
+    //     expect(newQty).toEqual(qtyAwal + 1)
+    // })
 
     // it('Mengurangi QTY dengan tombol minus', async function () { //done
     //     await browser.url('https://nadjani.com/product/sunjae-pink')
@@ -69,7 +69,7 @@ describe ('Test Website Nadjani', function () {
 
 //         await expect(browser).toHaveUrl('https://nadjani.com/category/top')
         
-})
+//})
 
     // it('Klik tombol "Ask Via WhatsApp" dan switch tab ke whatsapp', async function () { //done
     //     // Buka halaman produk
