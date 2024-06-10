@@ -3,6 +3,7 @@ import { browser, $ } from '@wdio/globals'
 class ProductPage {
     //element locators
     get Text() {return $('#content_left > div > div.summary.entry-summary.col-md-5 > h1')}
+    get detailCartName () {return $('#wrap > section.container > div > div > form > table > tbody > tr > td:nth-child(2) > a:nth-child(2)')}
     get inputQty() { return $('[name="qty"]') }
     get plusButton() { return $('#btn_qty_plus.select-qty-plus') }
     get qtyDropdown() { return $('#qty_product') }
@@ -19,6 +20,10 @@ class ProductPage {
     async open(productUrl) {
         await browser.url(productUrl)
     }
+    async getDetailCartName() {
+        return await this.detailCartName.getText()
+    }
+
     async getJudul() {
         return await this.Text.getText()
     }
@@ -76,13 +81,11 @@ class ProductPage {
     }
 
     async scrollDown() {
-        await browser.pause(2000)
+        await browser.pause(1000)
         await $ ('.ph-btn-activator').click()
         await $ ('.close-main-chat').click()
         await browser.execute(()=> window.scrollTo(0, 700))
-        // await browser.scroll(0, 4000)
-        await browser.pause(2000)
-
+        await browser.pause(1000)
     
     }
 }

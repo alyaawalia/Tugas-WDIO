@@ -44,6 +44,9 @@ describe('Test Website Nadjani', function () {
         await homePage.openPageSunjaePink()
         await ProductPage.addToCart()
         await expect(browser).toHaveUrl('https://nadjani.com/cart')
+        const judulCart = await ProductPage.getDetailCartName()
+        console.log('<|||| ini text judul cart ||||>', judulCart)
+        await expect(judulCart).toBe('Sunjae Pink')
     })
 
     it('Klik tombol "Top" dan beralih halaman', async function () {
