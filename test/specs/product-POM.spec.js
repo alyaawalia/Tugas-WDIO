@@ -73,5 +73,16 @@ describe('Test Website Nadjani', function () {
         const url = await browser.getUrl()
         expect(url).toBe('https://api.whatsapp.com/send?phone=6281220676314&text=Sunjae%20Pink%0Ahttps%3A%2F%2Fnadjani.com%2Fproduct%2Fsunjae-pink')
     })
+
+    it('Scroll Up', async function () {
+        await homePage.openPageSunjaePink()
+        await ProductPage.scrollDown()
+        await ProductPage.clickScrollButton()
+         // Menggulir halaman kembali ke atas
+        await browser.execute(() => window.scrollTo(0, 0)) // kalo gapake ini dia expectnya tobe 700 bukan 0
+        await browser.pause(1000)
+        const scrollAtas = await browser.execute(()=> window.scrollY)
+        expect (scrollAtas).toBe(0)
+    })
     
 })

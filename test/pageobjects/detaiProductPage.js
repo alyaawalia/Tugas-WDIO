@@ -13,6 +13,7 @@ class ProductPage {
     get linkHome() { return $('=HOME') }
     get searchInput() { return $('#search-box-2') }
     get addToCartButton() { return $('#btn_add_to_cart')}
+    get scrollButton() { return $('#scroll-top > a') }
 
     //page action
     async open(productUrl) {
@@ -27,10 +28,8 @@ class ProductPage {
     }
 
     async plusQty() {
-        //const qtyAwal = parseInt(await this.inputQty.getValue())
         await this.plusButton.waitForClickable()
         await this.plusButton.click()
-        //return qtyAwal
     }
 
     async getQty() {
@@ -40,12 +39,8 @@ class ProductPage {
         const inputQtyMinus = await $('#qty_product > option:nth-child(3)')
         await inputQtyMinus.click()
     }
-    // async getCurrentQty() {
-    //     return parseInt(await this.inputQty.getValue())
-    // }
     
     async minusQty() {
-        //await this.minusButtonButton.waitForClickable()
         await this.minusButton.click()
     }
 
@@ -73,6 +68,22 @@ class ProductPage {
     async addToCart() {
         await this.addToCartButton.waitForClickable()
         await this.addToCartButton.click()
+    }
+
+    async clickScrollButton() {
+        await this.scrollButton.waitForClickable()
+        await this.scrollButton.click()
+    }
+
+    async scrollDown() {
+        await browser.pause(2000)
+        await $ ('.ph-btn-activator').click()
+        await $ ('.close-main-chat').click()
+        await browser.execute(()=> window.scrollTo(0, 700))
+        // await browser.scroll(0, 4000)
+        await browser.pause(2000)
+
+    
     }
 }
 

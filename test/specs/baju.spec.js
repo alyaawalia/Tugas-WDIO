@@ -130,19 +130,19 @@ describe ('Test Website Nadjani', function () {
     })
 })
 
-//     // it.only('Scroll Up', async function (){
-//     //     await browser.url('https://nadjani.com/product/sunjae-pink')
+    // it.only('Scroll Up', async function (){
+    //     await browser.url('https://nadjani.com/product/sunjae-pink')
 
-//     //     // Cari elemen input untuk pencarian
-//     //     const scroll = await $('#scroll-top > a')
-//     //     await scroll.click()
+    //     // Cari elemen input untuk pencarian
+    //     const scroll = await $('#scroll-top > a')
+    //     await scroll.click()
 
-//     //     //await browser.pause(3000)
+    //     //await browser.pause(3000)
 
-//     //     await browser.execute(() => {
-//     //         window.scrollBy(0, -window.scrollY)
-//     //     })
-//     // })
+    //     await browser.execute(() => {
+    //         window.scrollBy(0, -window.scrollY)
+    //     })
+    // })
 
 //     // it.only('Hapus keranjang', async function () {
 //     //     // Buka halaman keranjang
