@@ -2,6 +2,7 @@ import { browser, $ } from '@wdio/globals'
 
 class ProductPage {
     //element locators
+    get Text() {return $('#content_left > div > div.summary.entry-summary.col-md-5 > h1')}
     get inputQty() { return $('[name="qty"]') }
     get plusButton() { return $('#btn_qty_plus.select-qty-plus') }
     get qtyDropdown() { return $('#qty_product') }
@@ -11,12 +12,16 @@ class ProductPage {
     get linkShop() { return $('#headline > div > div > a:nth-child(3)') }
     get linkHome() { return $('=HOME') }
     get searchInput() { return $('#search-box-2') }
-    //get addToCartButton() { return $('#btn_add_to_cart')}
+    get addToCartButton() { return $('#btn_add_to_cart')}
 
     //page action
     async open(productUrl) {
         await browser.url(productUrl)
     }
+    async getJudul() {
+        return await this.Text.getText()
+    }
+
     async getQty(){ //ambil qty awal
         return await this.inputQty.getValue()
     }
@@ -64,9 +69,11 @@ class ProductPage {
         await this.searchInput.setValue(keyword)
         await browser.keys('Enter')
     }
-    // async addToCart() {
-    //     await this.addToCartButton.click()
-    // }
+
+    async addToCart() {
+        await this.addToCartButton.waitForClickable()
+        await this.addToCartButton.click()
+    }
 }
 
 export default new ProductPage()
